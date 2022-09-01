@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { doc, setDoc, getDocs, updateDoc } from "firebase/firestore";
 import { app, db } from "../firebaseConfig";
 
-function Authentication() {
+function Realtimeupdate() {
   const [email, setemail] = useState("");
   const [last, setpass] = useState("");
   const [roll, setroll] = useState("");
@@ -35,6 +35,10 @@ function Authentication() {
       );
     });
   };
+
+  useEffect(()=>{
+    getData();
+  },[])
 
   const updateData = () => {
     const dostoupdate = doc(db, "users", "wpQTqb5ZQPBCc2O7biTK");
@@ -78,7 +82,7 @@ function Authentication() {
           placeholder="Reg..."
           onChange={(e) => setreg(e.target.value)}
         />
-        <button type="submit" onClick={getData}>
+        <button type="submit" onClick={submitdhandel}>
           submit
         </button>
       </div>
@@ -86,4 +90,4 @@ function Authentication() {
   );
 }
 
-export default Authentication;
+export default Realtimeupdate;
